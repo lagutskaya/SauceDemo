@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class ProductsPage extends BasePage {
 
@@ -15,6 +16,7 @@ public class ProductsPage extends BasePage {
     private static final By CART_BUTTON = By.cssSelector("[data-test='shopping-cart-link']");
 
     public String getTitle() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(TITLE));
         return driver.findElement(TITLE).getText();
     }
 
