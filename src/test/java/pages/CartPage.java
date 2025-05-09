@@ -44,4 +44,10 @@ public class CartPage extends BasePage {
                                         "*[@class = 'inventory_item_price']", product)))
                 .getText().replace("$", ""));
     }
+
+    public final By REMOVE_BUTTON = By.cssSelector("[data-test='remove-sauce-labs-backpack']");
+
+    public void remove() {
+        driver.findElement(REMOVE_BUTTON).click();
+    }
 }

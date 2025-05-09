@@ -1,5 +1,8 @@
 package tests;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
@@ -11,14 +14,34 @@ public class CartTest extends BaseTest {
     public void checkCart() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
+
         productsPage.addItemToCart("Sauce Labs Backpack");
         productsPage.openCart();
+
         assertTrue(cartPage.isProductInCart("Sauce Labs Backpack"),
-                "SO BAAAAD");
+                "Товар не добавлен в корзину");
         assertEquals(cartPage.getProductFromCart(0),
                 "Sauce Labs Backpack",
-                "SO BAAAAAD");
+                "Товар не добавлен в корзину");
+
         assertTrue(cartPage.getProductsName().contains("Sauce Labs Backpack"));
-        assertEquals(cartPage.getProductPrice("Sauce Labs Backpack"), 29.9);
+        assertEquals(cartPage.getProductPrice("Sauce Labs Backpack"), 29.99);
+    }
+
+    @Test
+    public void removeProductsFromCart() {
+        loginPage.open();
+        loginPage.login("standard_user", "secret_sauce");
+
+        productsPage.addItemToCart("Sauce Labs Onesie");
+        productsPage.openCart();
+
+        cartPage.wait.until(ExpectedConditions.visibilityOfElementLocated(cartPage.REMOVE_BUTTON));
+
+        cartPage.remove();
+
+        Boolean isRemoved = driver.findElement(By.cssSelector("[data-test='inventory-item-name']")).isDisplayed();
+
+        Assert.assertFalse(isRemoved, "Товар не удален из корзины");
     }
 }
