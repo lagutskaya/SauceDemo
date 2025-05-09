@@ -45,7 +45,7 @@ public class CartPage extends BasePage {
                 .getText().replace("$", ""));
     }
 
-    public final By REMOVE_BUTTON = By.cssSelector("[data-test='remove-sauce-labs-backpack']");
+    public final By REMOVE_BUTTON = By.xpath("//button[@id='remove-sauce-labs-backpack']");
 
     public void remove() {
         driver.findElement(REMOVE_BUTTON).click();
