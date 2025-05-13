@@ -7,7 +7,10 @@ import static org.testng.Assert.assertTrue;
 
 public class CartTest extends BaseTest {
 
-    @Test
+    @Test(testName = "Добавление товара в корзину",
+            description = "Проверка функционала добавления товара в корзину",
+            priority = 2,
+            groups = "Cart Page")
     public void checkCart() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
@@ -19,6 +22,6 @@ public class CartTest extends BaseTest {
                 "Sauce Labs Backpack",
                 "SO BAAAAAD");
         assertTrue(cartPage.getProductsName().contains("Sauce Labs Backpack"));
-        assertEquals(cartPage.getProductPrice("Sauce Labs Backpack"), 29.9);
+        assertEquals(cartPage.getProductPrice("Sauce Labs Backpack"), 29.99);
     }
 }
