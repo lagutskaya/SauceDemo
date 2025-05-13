@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
 
 public class ProductsTest extends BaseTest {
 
@@ -13,8 +12,7 @@ public class ProductsTest extends BaseTest {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
 
-        driver.findElement(productsPage.FILTER).click();
-        driver.findElement(productsPage.FILTER_A_Z).click();
+        productsPage.filterItemsFromAToZ();
 
         String filteredItem = driver.findElement(By.xpath(
                 "//*[text()='Test.allTheThings() T-Shirt (Red)']")).getText();
@@ -23,7 +21,7 @@ public class ProductsTest extends BaseTest {
     }
 
     @Test
-    public void add3ProductsInCart(){
+    public void add3ProductsInCart() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
 
@@ -33,8 +31,10 @@ public class ProductsTest extends BaseTest {
 
         productsPage.openCart();
 
-        assertTrue(cartPage.getProductsName().contains("Sauce Labs Backpack"));
-        assertTrue(cartPage.getProductsName().contains("Sauce Labs Bike Light"));
-        assertTrue(cartPage.getProductsName().contains("Sauce Labs Bolt T-Shirt"));
+        softAssert.assertTrue(cartPage.getProductsName().contains("Sauce Labs Backpack"));
+        softAssert.assertTrue(cartPage.getProductsName().contains("Sauce Labs Bike Light"));
+        softAssert.assertTrue(cartPage.getProductsName().contains("Sauce Labs Bolt T-Shirt"));
+
+        softAssert.assertAll();
     }
 }

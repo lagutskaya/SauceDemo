@@ -5,6 +5,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.asserts.SoftAssert;
 import pages.CartPage;
 import pages.CheckoutPage;
 import pages.LoginPage;
@@ -20,18 +21,19 @@ public class BaseTest {
     ProductsPage productsPage;
     CartPage cartPage;
     CheckoutPage checkoutPage;
+    SoftAssert softAssert = new SoftAssert();
 
     @BeforeMethod
     public void setup() {
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.manage().window().maximize();
-
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--incognito");
         chromeOptions.addArguments("--disable-notifications");
         chromeOptions.addArguments("--disable-popup-blocking");
         chromeOptions.addArguments("--disable-infobars");
+
+        driver = new ChromeDriver(chromeOptions);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().window().maximize();
 
         HashMap<String, Object> chromePrefs = new HashMap<>();
         chromePrefs.put("credentials_enable_service", false);

@@ -1,52 +1,42 @@
 package tests;
 
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
-import java.time.Duration;
-
+import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class CheckoutTest extends BaseTest {
 
     @Test
-    public void checkValidDataForm() {
+    public void checkValidDataForm() throws InterruptedException {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
 
         productsPage.addItemToCart("Sauce Labs Bolt T-Shirt");
         productsPage.openCart();
 
-        driver.findElement(checkoutPage.FIRST_NAME_FIELD).sendKeys("Test");
-        driver.findElement(checkoutPage.LAST_NAME_FIELD).sendKeys("Test");
-        driver.findElement(checkoutPage.ZIP_POSTAL_CODE_FIELD).sendKeys("123345");
+        checkoutPage.clickCheckoutButton();
+        checkoutPage.clickContinueButton();
+        checkoutPage.fillOrderForm();
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(checkoutPage.CHECKOUT_BUTTON));
-
-        driver.findElement(checkoutPage.CHECKOUT_BUTTON).click();
-
-        Boolean isPaymentInformationVisible = driver.findElement((checkoutPage.PAYMENT_INFORMATION)).isDisplayed();
-
-        assertTrue(isPaymentInformationVisible,
+        String isPaymentInformationVisible = driver.findElement((checkoutPage.PAYMENT_INFORMATION)).getText();
+        assertEquals(isPaymentInformationVisible, "Sauce Labs Bolt T-Shirt",
                 "Пользователь не перешел на вторую страницу оформления заказа");
     }
 
     @Test
-    public void checkRequiredNameField() {
+    public void checkRequiredNameField() throws InterruptedException {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
 
         productsPage.addItemToCart("Sauce Labs Bolt T-Shirt");
         productsPage.openCart();
 
-        driver.findElement(checkoutPage.LAST_NAME_FIELD).sendKeys("QWERTY");
-        driver.findElement(checkoutPage.ZIP_POSTAL_CODE_FIELD).sendKeys("12345");
-        driver.findElement(checkoutPage.CHECKOUT_BUTTON).click();
+        checkoutPage.clickCheckoutButton();
+        checkoutPage.clickContinueButton();
+        checkoutPage.fillOrderForm();
 
         Boolean errorIsDisplayed = driver.findElement(checkoutPage.ERROR).isDisplayed();
-
         assertTrue(errorIsDisplayed, "Контроль на обязательность заполнения поля 'Name' не сработал");
     }
 

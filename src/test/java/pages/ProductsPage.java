@@ -33,4 +33,9 @@ public class ProductsPage extends BasePage {
     public void openCart() {
         driver.findElement(CART_BUTTON).click();
     }
+
+    public void filterItemsFromAToZ(){
+        driver.findElement(FILTER).click();
+        driver.findElement(FILTER_A_Z).click();
+    }
 }
