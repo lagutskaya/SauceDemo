@@ -14,6 +14,12 @@ public class ProductsPage extends BasePage {
     private static final String ADD_TO_CART_PATTERN =
             "//*[text() = '%s']/ancestor::div[@class = 'inventory_item']//button";
     private static final By CART_BUTTON = By.cssSelector("[data-test='shopping-cart-link']");
+    public final By FILTER = By.cssSelector("[data-test='product-sort-container']");
+    public final By FILTER_A_Z = By.cssSelector("[value='za']");
+
+    public void open(){
+        driver.get(BASE_URL + "inventory.html");
+    }
 
     public String getTitle() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(TITLE));
@@ -26,5 +32,10 @@ public class ProductsPage extends BasePage {
 
     public void openCart() {
         driver.findElement(CART_BUTTON).click();
+    }
+
+    public void filterItemsFromAToZ(){
+        driver.findElement(FILTER).click();
+        driver.findElement(FILTER_A_Z).click();
     }
 }
