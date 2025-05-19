@@ -4,7 +4,10 @@ import org.testng.annotations.Test;
 
 public class AddToCartTest extends BaseTest {
 
-    @Test
+    @Test(testName = "Добавление товара в корзину",
+            description = "Проверка функционала добавления товара в корзину",
+            priority = 2,
+            groups = "Cart Page")
     public void checkAddToCartFunctional() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
