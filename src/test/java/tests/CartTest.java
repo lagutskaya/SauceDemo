@@ -1,9 +1,9 @@
 package tests;
 
+import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.assertFalse;
 
 public class CartTest extends BaseTest {
 
@@ -14,14 +14,21 @@ public class CartTest extends BaseTest {
     public void checkCart() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
+
         productsPage.addItemToCart("Sauce Labs Backpack");
         productsPage.openCart();
-        assertTrue(cartPage.isProductInCart("Sauce Labs Backpack"),
-                "SO BAAAAD");
-        assertEquals(cartPage.getProductFromCart(0),
+
+        softAssert.assertTrue(cartPage.isProductInCart("Sauce Labs Backpack"),
+                "Товар не добавлен в корзину");
+        softAssert.assertEquals(cartPage.getProductFromCart(0),
                 "Sauce Labs Backpack",
+
                 "SO BAAAAAD");
         assertTrue(cartPage.getProductsName().contains("Sauce Labs Backpack"));
         assertEquals(cartPage.getProductPrice("Sauce Labs Backpack"), 29.99);
+
+        softAssert.assertTrue(cartPage.getProductsName().contains("Sauce Labs Backpack"));
+        softAssert.assertEquals(cartPage.getProductPrice("Sauce Labs Backpack"), 29.99);
+        softAssert.assertAll();
     }
 }
