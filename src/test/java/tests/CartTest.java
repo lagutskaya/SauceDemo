@@ -3,7 +3,7 @@ package tests;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.*;
 
 public class CartTest extends BaseTest {
 
