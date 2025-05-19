@@ -1,5 +1,8 @@
 package tests;
 
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
@@ -8,6 +11,9 @@ import static org.testng.Assert.assertFalse;
 public class CartTest extends BaseTest {
 
     @Test
+    @Epic("Корзина")
+    @Feature("Добавление товара в корзину")
+    @Story("Отображение товара в корзине")
     public void checkCart() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");

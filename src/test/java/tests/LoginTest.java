@@ -1,5 +1,8 @@
 package tests;
 
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -10,6 +13,9 @@ import static org.testng.Assert.assertEquals;
 public class LoginTest extends BaseTest {
 
     @Test
+    @Epic("Авторизация")
+    @Feature("Страница логина")
+    @Story("Позитивный логин")
     public void checkLogin() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
