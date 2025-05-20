@@ -26,3 +26,4 @@ public class AddToCartTest extends BaseTest {
         productsPage.openCart();
     }
 }
+

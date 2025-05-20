@@ -19,3 +19,4 @@ public abstract class BasePage {
         actions = new Actions(driver);
     }
 }
+

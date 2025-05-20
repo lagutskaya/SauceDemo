@@ -60,5 +60,4 @@ public class CheckoutTest extends BaseTest {
         Boolean errorIsDisplayed = driver.findElement(checkoutPage.ERROR).isDisplayed();
         assertTrue(errorIsDisplayed, "Контроль на обязательность заполнения поля 'Name' не сработал");
     }
-
 }

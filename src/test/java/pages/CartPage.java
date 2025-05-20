@@ -54,3 +54,4 @@ public class CartPage extends BasePage {
         driver.findElement(REMOVE_BUTTON).click();
     }
 }
+

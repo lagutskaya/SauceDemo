@@ -39,3 +39,4 @@ public class CheckoutPage extends BasePage {
         driver.findElement(CHECKOUT_BUTTON).click();
     }
 }
+

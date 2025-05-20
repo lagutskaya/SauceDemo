@@ -44,3 +44,4 @@ public class ProductsPage extends BasePage {
         driver.findElement(FILTER_A_Z).click();
     }
 }
+

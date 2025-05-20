@@ -59,3 +59,4 @@ public class ProductsTest extends BaseTest {
         softAssert.assertAll();
     }
 }
+

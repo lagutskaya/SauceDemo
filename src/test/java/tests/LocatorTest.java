@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 
 
 public class LocatorTest extends BaseTest {
+
     @Test
     public void checkLocatorsLoginPage() {
         driver.get("https://www.saucedemo.com/");
