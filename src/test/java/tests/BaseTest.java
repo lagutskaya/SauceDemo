@@ -4,12 +4,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.ITestContext;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 import pages.CartPage;
 import pages.CheckoutPage;
 import pages.LoginPage;
 import pages.ProductsPage;
+import utils.AllureUtils;
+import utils.TestListener;
 
 import java.time.Duration;
 import java.util.HashMap;
@@ -31,7 +35,7 @@ public class BaseTest {
 
     @Parameters({"browser"})
     @BeforeMethod(alwaysRun = true)
-    public void setup(@Optional("chrome") String browser) {
+    public void setup(@Optional("chrome") String browser, ITestContext context) {
         if (browser.equalsIgnoreCase("chrome")) {
             ChromeOptions chromeOptions = new ChromeOptions();
             chromeOptions.addArguments("--incognito");
@@ -47,6 +51,7 @@ public class BaseTest {
             driver = new FirefoxDriver();
         }
 
+        context.setAttribute("driver", driver);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
         loginPage = new LoginPage(driver);
@@ -56,8 +61,11 @@ public class BaseTest {
 
     }
 
-    @AfterMethod(alwaysRun = true)
-    public void tearDown() {
+    @AfterMethod(alwaysRun = true, description = "Закрытие браузера")
+    public void tearDown(ITestResult result) {
+        if (result.FAILURE == result.getStatus()) {
+            AllureUtils.takeScreenshot(driver);
+        }
         driver.quit();
     }
 }

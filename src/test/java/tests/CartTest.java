@@ -1,9 +1,8 @@
 package tests;
 
-import org.openqa.selenium.By;
+import io.qameta.allure.*;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.*;
 
 public class CartTest extends BaseTest {
 
@@ -11,6 +10,14 @@ public class CartTest extends BaseTest {
             description = "Проверка функционала добавления товара в корзину",
             priority = 2,
             groups = "Cart Page")
+    @Epic("Корзина")
+    @Feature("Добавление товара в корзину")
+    @Story("Отображение товара в корзине")
+    @Severity(SeverityLevel.CRITICAL)
+    @Owner("Полина Лагуцкая")
+    @Link(name = "документация", url = "https://www.saucedemo.com/")
+    @TmsLink("TMS-10")
+    @Issue("TMS-11")
     public void checkCart() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
@@ -24,8 +31,6 @@ public class CartTest extends BaseTest {
                 "Sauce Labs Backpack",
 
                 "SO BAAAAAD");
-        assertTrue(cartPage.getProductsName().contains("Sauce Labs Backpack"));
-        assertEquals(cartPage.getProductPrice("Sauce Labs Backpack"), 29.99);
 
         softAssert.assertTrue(cartPage.getProductsName().contains("Sauce Labs Backpack"));
         softAssert.assertEquals(cartPage.getProductPrice("Sauce Labs Backpack"), 29.99);

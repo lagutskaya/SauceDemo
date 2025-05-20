@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -17,14 +18,17 @@ public class CheckoutPage extends BasePage {
         super(driver);
     }
 
+    @Step("Нажатие на 'Checkout' кнопку")
     public void clickCheckoutButton() {
         driver.findElement(CHECKOUT_BUTTON).click();
     }
 
+    @Step("Нажатие на 'Continue' кнопку")
     public void clickContinueButton() {
         driver.findElement(CONTINUE_BUTTON).click();
     }
 
+    @Step("Заполнение формы оформления заказа")
     public void fillOrderForm() throws InterruptedException {
         wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_NAME_FIELD));
         driver.findElement(FIRST_NAME_FIELD).sendKeys("Polina");

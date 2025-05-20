@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -15,10 +16,12 @@ public class LoginPage extends BasePage {
             LOGIN_BUTTON = By.id("login-button"),
             ERROR_MESSAGE = By.cssSelector("[data-test='error']");
 
+    @Step("Открытие страницы login page")
     public void open() {
         driver.get(BASE_URL);
     }
 
+    @Step("Вход в систему с именем пользователя: {user} и паролем: {password}")
     public void login(String user, String password) {
         driver.findElement(USER_NAME_FIELD).sendKeys(user);
         driver.findElement(PASSWORD_FIELD).sendKeys(password);

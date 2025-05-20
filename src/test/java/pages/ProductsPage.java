@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -17,7 +18,8 @@ public class ProductsPage extends BasePage {
     public final By FILTER = By.cssSelector("[data-test='product-sort-container']");
     public final By FILTER_A_Z = By.cssSelector("[value='za']");
 
-    public void open(){
+    @Step("Открытие страницы Products")
+    public void open() {
         driver.get(BASE_URL + "inventory.html");
     }
 
@@ -26,15 +28,18 @@ public class ProductsPage extends BasePage {
         return driver.findElement(TITLE).getText();
     }
 
+    @Step("Добавление товара с имененем: {product}")
     public void addItemToCart(String product) {
         driver.findElement(By.xpath(String.format(ADD_TO_CART_PATTERN, product))).click();
     }
 
+    @Step("Нажатие на кнопку корзины")
     public void openCart() {
         driver.findElement(CART_BUTTON).click();
     }
 
-    public void filterItemsFromAToZ(){
+    @Step("Фильтрация товаров на странице Products A-Z")
+    public void filterItemsFromAToZ() {
         driver.findElement(FILTER).click();
         driver.findElement(FILTER_A_Z).click();
     }

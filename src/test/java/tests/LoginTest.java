@@ -1,4 +1,6 @@
 package tests;
+
+import io.qameta.allure.*;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -10,6 +12,14 @@ public class LoginTest extends BaseTest {
             description = "Проверка логина с валидными данными",
             priority = 1,
             groups = "Login Page")
+    @Epic("Авторизация")
+    @Feature("Страница логина")
+    @Story("Позитивный логин")
+    @Severity(SeverityLevel.CRITICAL)
+    @Owner("Полина Лагуцкая")
+    @Link(name = "документация", url = "https://www.saucedemo.com/")
+    @TmsLink("TMS-6")
+    @Issue("TMS-7")
     public void checkLogin() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
@@ -22,6 +32,11 @@ public class LoginTest extends BaseTest {
             description = "Негативный кейс на проверку логина с пустым паролем",
             priority = 2,
             groups = "Login Page")
+    @Severity(SeverityLevel.CRITICAL)
+    @Owner("Полина Лагуцкая")
+    @Link(name = "документация", url = "https://www.saucedemo.com/")
+    @TmsLink("TMS-7")
+    @Issue("TMS-8")
     public void checkLoginWithEmptyValue() {
         loginPage.open();
         loginPage.login("standard_user", "");
@@ -34,6 +49,12 @@ public class LoginTest extends BaseTest {
             description = "Негативный кейс на проверку логина с невалидным username",
             priority = 2,
             groups = "Login Page")
+    @Severity(SeverityLevel.CRITICAL)
+    @Owner("Полина Лагуцкая")
+    @Description("Логин в систему валидными данными")
+    @Link(name = "документация", url = "https://www.saucedemo.com/")
+    @TmsLink("TMS-6")
+    @Issue("TMS-7")
     public void checkLoginInvalidUsername() {
         loginPage.open();
         loginPage.login("standard_user1", "secret_sauce");
@@ -51,6 +72,12 @@ public class LoginTest extends BaseTest {
     }
 
     @Test(dataProvider = "Негативные тесты для логина")
+    @Severity(SeverityLevel.MINOR)
+    @Owner("Полина Лагуцкая")
+    @Description("Логин в систему невалидными данными")
+    @Link(name = "документация", url = "https://www.saucedemo.com/")
+    @TmsLink("TMS-7")
+    @Issue("TMS-8")
     public void login(String user, String password, String message) {
         loginPage.open();
         loginPage.login(user, password);
