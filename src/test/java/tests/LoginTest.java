@@ -21,8 +21,9 @@ public class LoginTest extends BaseTest {
     @TmsLink("TMS-6")
     @Issue("TMS-7")
     public void checkLogin() {
-        loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.open()
+                .isOpened()
+                .login("standard_user", "secret_sauce");
         assertEquals(productsPage.getTitle(),
                 "Products",
                 "Логин не выполнен");
@@ -38,8 +39,9 @@ public class LoginTest extends BaseTest {
     @TmsLink("TMS-7")
     @Issue("TMS-8")
     public void checkLoginWithEmptyValue() {
-        loginPage.open();
-        loginPage.login("standard_user", "");
+        loginPage.open()
+                .isOpened()
+                .login("standard_user", "");
         assertEquals(loginPage.getErrorMessage(),
                 "Epic sadface: Password is required",
                 "Логин не выполнен");
@@ -56,8 +58,9 @@ public class LoginTest extends BaseTest {
     @TmsLink("TMS-6")
     @Issue("TMS-7")
     public void checkLoginInvalidUsername() {
-        loginPage.open();
-        loginPage.login("standard_user1", "secret_sauce");
+        loginPage.open()
+                .isOpened()
+                .login("standard_user1", "secret_sauce");
         assertEquals(loginPage.getErrorMessage(),
                 "Epic sadface: Username and password do not match any user in this service",
                 "Логин не выполнен");
@@ -79,8 +82,9 @@ public class LoginTest extends BaseTest {
     @TmsLink("TMS-7")
     @Issue("TMS-8")
     public void login(String user, String password, String message) {
-        loginPage.open();
-        loginPage.login(user, password);
+        loginPage.open()
+                .isOpened()
+                .login(user, password);
         assertEquals(loginPage.getErrorMessage(),
                 message,
                 "Unexpected result");

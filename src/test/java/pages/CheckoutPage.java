@@ -19,17 +19,19 @@ public class CheckoutPage extends BasePage {
     }
 
     @Step("Нажатие на 'Checkout' кнопку")
-    public void clickCheckoutButton() {
+    public CheckoutPage clickCheckoutButton() {
         driver.findElement(CHECKOUT_BUTTON).click();
+        return this;
     }
 
     @Step("Нажатие на 'Continue' кнопку")
-    public void clickContinueButton() {
+    public CheckoutPage clickContinueButton() {
         driver.findElement(CONTINUE_BUTTON).click();
+        return this;
     }
 
     @Step("Заполнение формы оформления заказа")
-    public void fillOrderForm() throws InterruptedException {
+    public CheckoutPage fillOrderForm() throws InterruptedException {
         wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_NAME_FIELD));
         driver.findElement(FIRST_NAME_FIELD).sendKeys("Polina");
         driver.findElement(LAST_NAME_FIELD).sendKeys("Q");
@@ -37,6 +39,12 @@ public class CheckoutPage extends BasePage {
 
         Thread.sleep(4000);
         driver.findElement(CHECKOUT_BUTTON).click();
+        return this;
+    }
+
+    public CheckoutPage isOpened() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(FIRST_NAME_FIELD));
+        return this;
     }
 }
 

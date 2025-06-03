@@ -19,11 +19,13 @@ public class AddToCartTest extends BaseTest {
     @TmsLink("TMS-1")
     @Issue("TMS-2")
     public void checkAddToCartFunctional() {
-        loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
-        productsPage.addItemToCart("Sauce Labs Bolt T-Shirt");
-        productsPage.addItemToCart("Sauce Labs Bike Light");
-        productsPage.openCart();
+        loginPage.open()
+                .isOpened()
+                .login("standard_user", "secret_sauce");
+        productsPage.isOpened()
+                .addItemToCart("Sauce Labs Bolt T-Shirt")
+                .addItemToCart("Sauce Labs Bike Light")
+                .openCart();
     }
 }
 

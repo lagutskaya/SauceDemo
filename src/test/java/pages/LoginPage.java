@@ -17,20 +17,27 @@ public class LoginPage extends BasePage {
             ERROR_MESSAGE = By.cssSelector("[data-test='error']");
 
     @Step("Открытие страницы login page")
-    public void open() {
+    public LoginPage open() {
         driver.get(BASE_URL);
+        return this;
     }
 
     @Step("Вход в систему с именем пользователя: {user} и паролем: {password}")
-    public void login(String user, String password) {
+    public LoginPage login(String user, String password) {
         driver.findElement(USER_NAME_FIELD).sendKeys(user);
         driver.findElement(PASSWORD_FIELD).sendKeys(password);
         driver.findElement(LOGIN_BUTTON).click();
+        return this;
     }
 
     public String getErrorMessage() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(ERROR_MESSAGE));
         return driver.findElement(ERROR_MESSAGE).getText();
+    }
+
+    public LoginPage isOpened(){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(USER_NAME_FIELD));
+        return this;
     }
 
 }

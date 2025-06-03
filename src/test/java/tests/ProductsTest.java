@@ -20,10 +20,12 @@ public class ProductsTest extends BaseTest {
     @TmsLink("TMS-4")
     @Issue("TMS-5")
     public void checkFilterFunctional() {
-        loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.open()
+                .isOpened()
+                .login("standard_user", "secret_sauce");
 
-        productsPage.filterItemsFromAToZ();
+        productsPage.isOpened()
+                .filterItemsFromAToZ();
 
         String filteredItem = driver.findElement(By.xpath(
                 "//*[text()='Test.allTheThings() T-Shirt (Red)']")).getText();
@@ -43,14 +45,15 @@ public class ProductsTest extends BaseTest {
     @TmsLink("TMS-5")
     @Issue("TMS-6")
     public void add3ProductsInCart() {
-        loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.open()
+                .isOpened()
+                .login("standard_user", "secret_sauce");
 
-        productsPage.addItemToCart("Sauce Labs Backpack");
-        productsPage.addItemToCart("Sauce Labs Bike Light");
-        productsPage.addItemToCart("Sauce Labs Bolt T-Shirt");
-
-        productsPage.openCart();
+        productsPage.isOpened()
+                .addItemToCart("Sauce Labs Backpack")
+                .addItemToCart("Sauce Labs Bike Light")
+                .addItemToCart("Sauce Labs Bolt T-Shirt")
+                .openCart();
 
         softAssert.assertTrue(cartPage.getProductsName().contains("Sauce Labs Backpack"));
         softAssert.assertTrue(cartPage.getProductsName().contains("Sauce Labs Bike Light"));

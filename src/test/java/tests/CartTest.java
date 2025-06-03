@@ -19,19 +19,19 @@ public class CartTest extends BaseTest {
     @TmsLink("TMS-10")
     @Issue("TMS-11")
     public void checkCart() {
-        loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.open()
+                .isOpened()
+                .login("standard_user", "secret_sauce");
 
-        productsPage.addItemToCart("Sauce Labs Backpack");
-        productsPage.openCart();
+        productsPage.isOpened()
+                .addItemToCart("Sauce Labs Backpack")
+                .openCart();
 
         softAssert.assertTrue(cartPage.isProductInCart("Sauce Labs Backpack"),
                 "Товар не добавлен в корзину");
         softAssert.assertEquals(cartPage.getProductFromCart(0),
                 "Sauce Labs Backpack",
-
                 "SO BAAAAAD");
-
         softAssert.assertTrue(cartPage.getProductsName().contains("Sauce Labs Backpack"));
         softAssert.assertEquals(cartPage.getProductPrice("Sauce Labs Backpack"), 29.99);
         softAssert.assertAll();

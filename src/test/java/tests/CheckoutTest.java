@@ -20,15 +20,15 @@ public class CheckoutTest extends BaseTest {
     @TmsLink("TMS-2")
     @Issue("TMS-3")
     public void checkValidDataForm() throws InterruptedException {
-        loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.open()
+                .login("standard_user", "secret_sauce");
 
-        productsPage.addItemToCart("Sauce Labs Bolt T-Shirt");
-        productsPage.openCart();
+        productsPage.addItemToCart("Sauce Labs Bolt T-Shirt")
+                .openCart();
 
-        checkoutPage.clickCheckoutButton();
-        checkoutPage.clickContinueButton();
-        checkoutPage.fillOrderForm();
+        checkoutPage.clickCheckoutButton()
+                .clickContinueButton()
+                .fillOrderForm();
 
         String isPaymentInformationVisible = driver.findElement((checkoutPage.PAYMENT_INFORMATION)).getText();
         assertEquals(isPaymentInformationVisible, "Sauce Labs Bolt T-Shirt",
@@ -47,15 +47,18 @@ public class CheckoutTest extends BaseTest {
     @TmsLink("TMS-3")
     @Issue("TMS-4")
     public void checkRequiredNameField() throws InterruptedException {
-        loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.open()
+                .isOpened()
+                .login("standard_user", "secret_sauce");
 
-        productsPage.addItemToCart("Sauce Labs Bolt T-Shirt");
-        productsPage.openCart();
+        productsPage.isOpened()
+                .addItemToCart("Sauce Labs Bolt T-Shirt")
+                .openCart();
 
-        checkoutPage.clickCheckoutButton();
-        checkoutPage.clickContinueButton();
-        checkoutPage.fillOrderForm();
+        checkoutPage.isOpened()
+                .clickCheckoutButton()
+                .clickContinueButton()
+                .fillOrderForm();
 
         Boolean errorIsDisplayed = driver.findElement(checkoutPage.ERROR).isDisplayed();
         assertTrue(errorIsDisplayed, "Контроль на обязательность заполнения поля 'Name' не сработал");

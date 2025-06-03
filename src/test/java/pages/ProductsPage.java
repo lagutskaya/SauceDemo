@@ -19,8 +19,9 @@ public class ProductsPage extends BasePage {
     public final By FILTER_A_Z = By.cssSelector("[value='za']");
 
     @Step("Открытие страницы Products")
-    public void open() {
+    public ProductsPage open() {
         driver.get(BASE_URL + "inventory.html");
+        return this;
     }
 
     public String getTitle() {
@@ -29,19 +30,27 @@ public class ProductsPage extends BasePage {
     }
 
     @Step("Добавление товара с имененем: {product}")
-    public void addItemToCart(String product) {
+    public ProductsPage addItemToCart(String product) {
         driver.findElement(By.xpath(String.format(ADD_TO_CART_PATTERN, product))).click();
+        return this;
     }
 
     @Step("Нажатие на кнопку корзины")
-    public void openCart() {
+    public ProductsPage openCart() {
         driver.findElement(CART_BUTTON).click();
+        return this;
     }
 
     @Step("Фильтрация товаров на странице Products A-Z")
-    public void filterItemsFromAToZ() {
+    public ProductsPage filterItemsFromAToZ() {
         driver.findElement(FILTER).click();
         driver.findElement(FILTER_A_Z).click();
+        return this;
+    }
+
+    public ProductsPage isOpened(){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(CART_BUTTON));
+        return this;
     }
 }
 
