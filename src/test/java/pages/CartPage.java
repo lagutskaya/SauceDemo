@@ -36,7 +36,6 @@ public class CartPage extends BasePage {
     }
 
     public ArrayList<String> getProductsName() {
-        log.info("Information about product name is taken");
         List<WebElement> allProductsElements = driver.findElements(By.cssSelector(".inventory_item_name"));
         ArrayList<String> names = new ArrayList<>();
         for (WebElement product : allProductsElements) {
@@ -46,7 +45,6 @@ public class CartPage extends BasePage {
     }
 
     public double getProductPrice(String product) {
-        log.info("Information about products price is taken");
         return Double.parseDouble(driver.findElement(
                         By.xpath(String.format(
                                 "//*[text() = '%s']/ancestor::div[@class='cart_item']//" +
