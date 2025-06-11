@@ -21,7 +21,7 @@ public class AddToCartTest extends BaseTest {
     public void checkAddToCartFunctional() {
         loginPage.open()
                 .isOpened()
-                .login("standard_user", "secret_sauce");
+                .login(user, password);
         productsPage.isOpened()
                 .addItemToCart("Sauce Labs Bolt T-Shirt")
                 .addItemToCart("Sauce Labs Bike Light")

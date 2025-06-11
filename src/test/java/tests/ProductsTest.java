@@ -22,7 +22,7 @@ public class ProductsTest extends BaseTest {
     public void checkFilterFunctional() {
         loginPage.open()
                 .isOpened()
-                .login("standard_user", "secret_sauce");
+                .login(user, password);
 
 
         productsPage.isOpened()
@@ -48,7 +48,7 @@ public class ProductsTest extends BaseTest {
     public void add3ProductsInCart() {
         loginPage.open()
                 .isOpened()
-                .login("standard_user", "secret_sauce");
+                .login(user, password);
 
         productsPage.isOpened()
                 .addItemToCart("Sauce Labs Backpack")

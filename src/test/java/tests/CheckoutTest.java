@@ -21,7 +21,7 @@ public class CheckoutTest extends BaseTest {
     @Issue("TMS-3")
     public void checkValidDataForm() throws InterruptedException {
         loginPage.open()
-                .login("standard_user", "secret_sauce");
+                .login(user, password);
 
         productsPage.addItemToCart("Sauce Labs Bolt T-Shirt")
                 .openCart();
@@ -50,7 +50,7 @@ public class CheckoutTest extends BaseTest {
     public void checkRequiredNameField() throws InterruptedException {
         loginPage.open()
                 .isOpened()
-                .login("standard_user", "secret_sauce");
+                .login(user, password);
 
         productsPage.isOpened()
                 .addItemToCart("Sauce Labs Bolt T-Shirt")

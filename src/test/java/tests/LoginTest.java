@@ -60,7 +60,7 @@ public class LoginTest extends BaseTest {
     public void checkLoginInvalidUsername() {
         loginPage.open()
                 .isOpened()
-                .login("standard_user1", password);
+                .login("test", password);
         assertEquals(loginPage.getErrorMessage(),
                 "Epic sadface: Username and password do not match any user in this service",
                 "Логин не выполнен");
