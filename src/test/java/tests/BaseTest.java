@@ -27,8 +27,8 @@ public class BaseTest {
     ProductsPage productsPage;
     CartPage cartPage;
 
-    String user = System.getProperty("user", PropertyReader.getProperty("user"));
-    String password = System.getProperty("password", PropertyReader.getProperty("password"));
+    String user = System.getProperty("user");
+    String password = System.getProperty("password");
 
     CheckoutPage checkoutPage;
     SoftAssert softAssert = new SoftAssert();
@@ -61,9 +61,6 @@ public class BaseTest {
         productsPage = new ProductsPage(driver);
         cartPage = new CartPage(driver);
         checkoutPage = new CheckoutPage(driver);
-
-        System.out.println(user);
-        System.out.println(password);
     }
 
     @AfterMethod(alwaysRun = true, description = "Закрытие браузера")
