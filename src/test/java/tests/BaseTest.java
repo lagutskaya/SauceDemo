@@ -40,12 +40,12 @@ public class BaseTest {
             ChromeOptions chromeOptions = new ChromeOptions();
             chromeOptions.addArguments("--incognito");
             chromeOptions.addArguments("--disable-notification");
-            ChromeOptions options = new ChromeOptions();
+            chromeOptions.addArguments("--headless");
             HashMap<String, Object> chromePrefs = new HashMap<>();
             chromePrefs.put("credentials_enable_service", false);
             chromePrefs.put("profile.password_manager_enabled", false);
-            options.setExperimentalOption("prefs", chromePrefs);
-            driver = new ChromeDriver(options);
+            chromeOptions.setExperimentalOption("prefs", chromePrefs);
+            driver = new ChromeDriver(chromeOptions);
         }
         if ((browser.equalsIgnoreCase("firefox"))) {
             driver = new FirefoxDriver();
@@ -66,6 +66,8 @@ public class BaseTest {
         if (result.FAILURE == result.getStatus()) {
             AllureUtils.takeScreenshot(driver);
         }
-        driver.quit();
+        if (driver != null) {
+            driver.quit();
+        }
     }
 }
