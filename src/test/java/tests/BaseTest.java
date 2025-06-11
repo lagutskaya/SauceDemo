@@ -62,6 +62,8 @@ public class BaseTest {
         cartPage = new CartPage(driver);
         checkoutPage = new CheckoutPage(driver);
 
+        System.out.println(user);
+        System.out.println(password);
     }
 
     @AfterMethod(alwaysRun = true, description = "Закрытие браузера")
