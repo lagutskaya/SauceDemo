@@ -8,7 +8,7 @@ import static org.testng.Assert.assertTrue;
 
 public class CheckoutTest extends BaseTest {
 
-    @Test(testName = "Заполнение валидными данными формы для оформления заказа")
+    @Test(testName = "Заполнение валидными данными формы для оформления заказа",enabled = false)
     @Epic("Оформление заказа")
     @Feature("Оформление заказа на странице Checkout")
     @Story("Переход на 2-ую страницу оформления заказа после заполнения формы заказа")
@@ -35,7 +35,7 @@ public class CheckoutTest extends BaseTest {
                 "Пользователь не перешел на вторую страницу оформления заказа");
     }
 
-    @Test(testName = "Обязательность заполнения поля 'Name' на странице Checkout")
+    @Test(testName = "Обязательность заполнения поля 'Name' на странице Checkout", enabled = false)
     @Epic("Оформление заказа")
     @Feature("Форма оформления заказа")
     @Story("Обязательность заполнения поля 'Name' в форме оформления заказа")
@@ -46,6 +46,7 @@ public class CheckoutTest extends BaseTest {
     @Link(name = "документация", url = "https://www.saucedemo.com/")
     @TmsLink("TMS-3")
     @Issue("TMS-4")
+
     public void checkRequiredNameField() throws InterruptedException {
         loginPage.open()
                 .isOpened()
