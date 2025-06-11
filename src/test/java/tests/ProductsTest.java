@@ -24,6 +24,7 @@ public class ProductsTest extends BaseTest {
                 .isOpened()
                 .login("standard_user", "secret_sauce");
 
+
         productsPage.isOpened()
                 .filterItemsFromAToZ();
 
