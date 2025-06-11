@@ -11,14 +11,14 @@ on:
   schedule:
     - cron: "0 14 * 1 5"
 
-env:
-  USER: ${{secrets.SD_USER}}
-  PASS: ${{secrets.SD_PASSWORD}}
-
 jobs:
   build:
 
     runs-on: ubuntu-latest
+
+    env:
+      USER: ${{secrets.SD_USER}}
+      PASS: ${{secrets.SD_PASSWORD}}
 
     steps:
       - name: Checkout
