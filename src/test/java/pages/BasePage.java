@@ -3,14 +3,13 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import tests.PropertyReader;
 
 import java.time.Duration;
 
 public abstract class BasePage {
 
     WebDriver driver;
-    public static final String BASE_URL = PropertyReader.getProperty("baseURL");
+    public static final String BASE_URL = "https://www.saucedemo.com/";
     public WebDriverWait wait;
     public Actions actions;
 

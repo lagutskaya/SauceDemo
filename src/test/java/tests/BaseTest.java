@@ -33,7 +33,6 @@ public class BaseTest {
     CheckoutPage checkoutPage;
     SoftAssert softAssert = new SoftAssert();
 
-
     @Parameters({"browser"})
     @BeforeMethod(alwaysRun = true)
     public void setup(@Optional("chrome") String browser, ITestContext context) {
