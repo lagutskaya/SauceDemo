@@ -27,7 +27,7 @@ public class LoginPage extends BasePage {
 
     @Step("Вход в систему с именем пользователя: {user} и паролем: {password}")
     public LoginPage login(String user, String password) {
-        log.info("The user has authorized in the system with credentials : {user} {password}");
+        log.info("Log in with credential: '{}', '{}'", user, password);
         driver.findElement(USER_NAME_FIELD).sendKeys(user);
         driver.findElement(PASSWORD_FIELD).sendKeys(password);
         driver.findElement(LOGIN_BUTTON).click();
