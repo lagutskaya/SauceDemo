@@ -1,5 +1,6 @@
 package tests;
 
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -19,6 +20,7 @@ import utils.TestListener;
 import java.time.Duration;
 import java.util.HashMap;
 
+@Log4j2
 @Listeners(TestListener.class)
 public class BaseTest {
 
@@ -37,6 +39,7 @@ public class BaseTest {
     @BeforeMethod(alwaysRun = true)
     public void setup(@Optional("chrome") String browser, ITestContext context) {
         if (browser.equalsIgnoreCase("chrome")) {
+            log.info("Tests run in chrome browser");
             ChromeOptions chromeOptions = new ChromeOptions();
             chromeOptions.addArguments("--incognito");
             chromeOptions.addArguments("--disable-notification");
@@ -53,6 +56,7 @@ public class BaseTest {
             driver = new ChromeDriver(chromeOptions);
         }
         if ((browser.equalsIgnoreCase("firefox"))) {
+            log.info("Tests run in firefox browser");
             FirefoxOptions options = new FirefoxOptions();
             options.addArguments("--headless");
             driver = new FirefoxDriver(options);
