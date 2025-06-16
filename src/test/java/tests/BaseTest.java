@@ -41,6 +41,9 @@ public class BaseTest {
             chromeOptions.addArguments("--incognito");
             chromeOptions.addArguments("--disable-notification");
             chromeOptions.addArguments("--headless");
+            chromeOptions.addArguments("--no-sandbox");
+            chromeOptions.addArguments("--disable-dev-shm-usage");
+            chromeOptions.addArguments("--disable-gpu");
             HashMap<String, Object> chromePrefs = new HashMap<>();
             chromePrefs.put("credentials_enable_service", false);
             chromePrefs.put("profile.password_manager_enabled", false);
