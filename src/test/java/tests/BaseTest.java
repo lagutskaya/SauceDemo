@@ -40,7 +40,9 @@ public class BaseTest {
             ChromeOptions chromeOptions = new ChromeOptions();
             chromeOptions.addArguments("--incognito");
             chromeOptions.addArguments("--disable-notification");
-            chromeOptions.addArguments("--headless");
+            if (System.getProperty("headless", "true").equals("true")) {
+                chromeOptions.addArguments("--headless");
+            }
             chromeOptions.addArguments("--no-sandbox");
             chromeOptions.addArguments("--disable-dev-shm-usage");
             chromeOptions.addArguments("--disable-gpu");
