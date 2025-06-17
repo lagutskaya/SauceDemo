@@ -41,7 +41,9 @@ public class BaseTest {
         if (browser.equalsIgnoreCase("chrome")) {
             log.info("Tests run in chrome browser");
             ChromeOptions chromeOptions = new ChromeOptions();
-            chromeOptions.addArguments("--incognito");
+            if (System.getProperty("incognito", "true").equals("true")) {
+                chromeOptions.addArguments("--incognito");
+            }
             chromeOptions.addArguments("--disable-notification");
             if (System.getProperty("headless", "true").equals("true")) {
                 chromeOptions.addArguments("--headless");
